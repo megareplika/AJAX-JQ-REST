@@ -18,12 +18,9 @@ and open the template in the editor.
             <header><h1>Telefonkönyv</h1></header>
             <nav>
                 <ul>
-                   
                     <li id="beolvas"><a href="#">Beolvas</a></li>
                 </ul>
-
             </nav>
-
             <section>
                 <p for="nev">név:</p>
                 <input type="text" id="nev" name="nev" value="Valaki Vagyok">
@@ -33,10 +30,8 @@ and open the template in the editor.
                 <input type="text" id="kep" name="kep">
                 <br>
                 <button id="kuld">Küld</button>
-
             </section>
             <article>
-
 
             </article>
         </main>
