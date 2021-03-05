@@ -4,7 +4,7 @@ function kiir() {
     $("article").empty();
     for (var i = 0; i < telefonkonyvem.length; i++) {
         var konyv = telefonkonyvem[i];
-        var elem = "<div><h2>" + konyv.nev + "</h2><p>" + konyv.tel + "</p><p><img src = '" + konyv.kep + "' alt='kep'></p><button class='torol'>Töröl</button></div>";
+        var elem = "<div><h2>" + konyv.nev + "</h2><p>" + konyv.tel + "</p><p><img src = '" + konyv.kep + "' alt='kep'></p><button class='torol' id='" + konyv.ID + "'>Töröl</button></div>";
         $("article").append(elem);
     }
 }
@@ -47,8 +47,25 @@ function adBeir() {
             });
 }
 
+function adTorol() {
+    console.log("torlés");
+    var elem = $(this);
+    var id = elem.attr("id");
+    $.ajax(
+            {
+                type: "DELETE",
+                url: "torles.php?ID="+id,
+                success: function (result) {
+                    elem.closest("div").remove();
+                },
+                error: function () {
+                    alert("Hiba az adatok torlésekor");
+                }
+            });
+}
+
 $(function () {
     $("#beolvas").on("click", beolvas);
     $("#kuld").on("click", adBeir);
+    $("article").delegate(".torol", "click", adTorol);
 });
-
