@@ -17,15 +17,35 @@
                 </ul>
             </nav>
             <section>
-                <p for="nev">név:</p>
-                <input type="text" id="nev" name="nev" value="Valaki Vagyok">
-                <p for="tel">tel:</p>
-                <input type="text" id="tel" name="tel" value="03-30-1234-567">
-                <p for="kep">kép:</p>
-                <input type="text" id="kep" name="kep">
-                <br>
-                <button id="kuld">Küld</button>
+                <form class="urlap">
+                    <label for="nev">név:</label>
+                    <input type="text" id="nev" name="nev" value="Valaki Vagyok">
+                    <label for="tel">tel:</label>
+                    <input type="text" id="tel" name="tel" value="03-30-1234-567">
+                    <label for="kep">kép:</label>
+                    <input type="text" id="kep" name="kep">
+                    <br>
+                    <input type="button" id="kuld" value="Küld" novalidate>
+                </form>
             </section>
+
+            <section>
+                <form class="urlap szerkesztes elrejt">
+                    <label for="id2">id:</label>
+                    <input type="text" id="id2" name="id2" readonly>
+                    <label for="nev2">név:</label>
+                    <input type="text" id="nev2" name="nev2">
+                    <label for="tel2">tel:</label>
+                    <input type="text2" id="tel2" name="tel2">
+                    <label for="kep2">kép:</label>
+                    <input type="text" id="kep2" name="kep2">
+                    <br>
+                    <input type="button" id="modosit" value="modosít" novalidate>
+                    <br>
+                    <input type="button" id="megse" value="megse" novalidate>
+                </form>
+            </section>
+
             <article>
 
             </article>

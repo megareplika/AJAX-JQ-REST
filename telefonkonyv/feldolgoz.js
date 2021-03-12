@@ -4,7 +4,7 @@ function kiir() {
     $("article").empty();
     for (var i = 0; i < telefonkonyvem.length; i++) {
         var konyv = telefonkonyvem[i];
-        var elem = "<div><h2>" + konyv.nev + "</h2><p>" + konyv.tel + "</p><p><img src = '" + konyv.kep + "' alt='kep'></p><button class='torol' id='" + konyv.ID + "'>Töröl</button></div>";
+        var elem = "<div><h2>" + konyv.nev + "</h2><p>" + konyv.tel + "</p><p><img src = '" + konyv.kep + "' alt='kep'></p><button class='torol' id='" + konyv.ID + "'>Töröl</button> <button class='szerkeszt' id='" + i + "'>Szerkeszt</button></div>";
         $("article").append(elem);
     }
 }
@@ -54,7 +54,7 @@ function adTorol() {
     $.ajax(
             {
                 type: "DELETE",
-                url: "torles.php?ID="+id,
+                url: "torles.php?ID=" + id,
                 success: function (result) {
                     elem.closest("div").remove();
                 },
@@ -64,8 +64,50 @@ function adTorol() {
             });
 }
 
+function adatszerkeszt() {
+//    console.log("modosit");
+    $(".szerkesztes").removeClass("elrejt");
+    var index = $(this).attr("id");
+//    console.log(index);
+    var elem = telefonkonyvem[index];
+    $("#id2").val(elem.ID);
+    $("#nev2").val(elem.nev);
+    $("#tel2").val(elem.tel);
+    $("#kep2").val(elem.kep);
+}
+
+function adatmegse() {
+    $(".szerkesztes").addClass("elrejt");
+}
+
+function admodosit() {
+    var editSzemély = {
+        id: $("#id2").val(),
+        nev: $("#nev2").val(),
+        tel: $("#tel2").val(),
+        kep: $("#kep2").val()
+    }
+    console.log("modosít");
+    console.log(editSzemély);
+    $.ajax(
+            {
+                type: "PUT",
+                url: "modosit.php",
+                data: editSzemély,
+                success: function () {
+                    beolvas();
+                },
+                error: function () {
+                    alert("Hiba az adatok adatokmodosításakor");
+                }
+            });
+}
+
 $(function () {
     $("#beolvas").on("click", beolvas);
     $("#kuld").on("click", adBeir);
+    $("#megse").on("click", adatmegse);
+    $("#modosit").on("click", admodosit);
     $("article").delegate(".torol", "click", adTorol);
+    $("article").delegate(".szerkeszt", "click", adatszerkeszt);
 });
